@@ -15,12 +15,14 @@ public class Person {
     private String lastName;
     private String address;
     private String phoneNumber;
+    private FamilyMemberType familyMemberType;
 
-    public Person(String firstName, String lastName, String address, String phoneNumber) {
+    public Person(String firstName, String lastName, String address, String phoneNumber, FamilyMemberType familyMemberType) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.phoneNumber = phoneNumber;
+        this.familyMemberType = familyMemberType;
     }
 
     public Long getId() {
@@ -61,5 +63,13 @@ public class Person {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public FamilyMemberType getFamilyMemberType() {
+        return familyMemberType;
+    }
+
+    public void setFamilyMemberType(FamilyMemberType familyMemberType) {
+        this.familyMemberType = familyMemberType;
     }
 }
