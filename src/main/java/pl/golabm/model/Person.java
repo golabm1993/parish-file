@@ -17,6 +17,9 @@ public class Person {
     private String phoneNumber;
     private FamilyMemberType familyMemberType;
 
+    public Person() {
+    }
+
     public Person(String firstName, String lastName, String address, String phoneNumber, FamilyMemberType familyMemberType) {
         this.firstName = firstName;
         this.lastName = lastName;
