@@ -34,7 +34,7 @@ public class PersonService {
         return personRepository.findById(id);
     }
 
-    public Person update(Long id) {
+    public Person mapOldToNewPerson(Long id) {
         Person newPerson = new Person();
         Optional<Person> oldPerson = getOnePerson(id);
         Person person = oldPerson.get();
