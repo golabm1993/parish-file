@@ -33,8 +33,8 @@ public class PersonService {
     public Optional<Person> getOnePerson(Long id) {
         return personRepository.findById(id);
     }
-
-    public Person update(Long id, Person newPerson) {
+  
+    public Person mapOldToNewPerson(Long id, Person newPerson) {
         Optional<Person> oldPerson = getOnePerson(id);
         Person person = oldPerson.get();
         person.setFirstName(newPerson.getFirstName());
