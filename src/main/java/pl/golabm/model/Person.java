@@ -9,13 +9,16 @@ import javax.persistence.Id;
 public class Person {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String firstName;
     private String lastName;
     private String address;
     private String phoneNumber;
     private FamilyMemberType familyMemberType;
+
+    public Person() {
+    }
 
     public Person(String firstName, String lastName, String address, String phoneNumber, FamilyMemberType familyMemberType) {
         this.firstName = firstName;
