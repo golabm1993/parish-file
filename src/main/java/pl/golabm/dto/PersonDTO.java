@@ -1,6 +1,7 @@
 package pl.golabm.dto;
 
 import org.springframework.lang.NonNull;
+import pl.golabm.model.FamilyMemberType;
 import pl.golabm.model.Person;
 
 public class PersonDTO {
@@ -18,6 +19,9 @@ public class PersonDTO {
 
     @NonNull
     private String phoneNumber;
+
+    @NonNull
+    private FamilyMemberType familyMemberType;
 
     public Long getId() {
         return id;
@@ -59,6 +63,14 @@ public class PersonDTO {
         this.phoneNumber = phoneNumber;
     }
 
+    public FamilyMemberType getFamilyMemberType() {
+        return familyMemberType;
+    }
+
+    public void setFamilyMemberType(FamilyMemberType familyMemberType) {
+        this.familyMemberType = familyMemberType;
+    }
+
     public Person toEntity() {
         Person person = new Person();
         person.setId(id);
@@ -66,6 +78,7 @@ public class PersonDTO {
         person.setLastName(lastName);
         person.setAddress(address);
         person.setPhoneNumber(phoneNumber);
+        person.setFamilyMemberType(familyMemberType);
         return person;
     }
 
@@ -76,6 +89,7 @@ public class PersonDTO {
         personDTO.setLastName(person.getLastName());
         personDTO.setAddress(person.getAddress());
         personDTO.setPhoneNumber(person.getPhoneNumber());
+        personDTO.setFamilyMemberType(person.getFamilyMemberType());
         return personDTO;
     }
 }

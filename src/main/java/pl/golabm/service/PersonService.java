@@ -33,16 +33,15 @@ public class PersonService {
     public Optional<Person> getOnePerson(Long id) {
         return personRepository.findById(id);
     }
-
-    public Person mapOldToNewPerson(Long id) {
-        Person newPerson = new Person();
+  
+    public Person mapOldToNewPerson(Long id, Person newPerson) {
         Optional<Person> oldPerson = getOnePerson(id);
         Person person = oldPerson.get();
-        newPerson.setId(person.getId());
-        newPerson.setFirstName(person.getFirstName());
-        newPerson.setLastName(person.getLastName());
-        newPerson.setAddress(person.getAddress());
-        newPerson.setPhoneNumber(person.getPhoneNumber());
-        return newPerson;
+        person.setFirstName(newPerson.getFirstName());
+        person.setLastName(newPerson.getLastName());
+        person.setAddress(newPerson.getAddress());
+        person.setPhoneNumber(newPerson.getPhoneNumber());
+        person.setFamilyMemberType(newPerson.getFamilyMemberType());
+        return personRepository.save(person);
     }
 }
