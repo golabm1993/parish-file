@@ -1,9 +1,14 @@
 package pl.golabm.model;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 public class Child {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String firstName;
     private Date birthDate;
     private Date baptismDate;
@@ -13,7 +18,18 @@ public class Child {
     private ConfessionAndHolyCommunion confessionAndHolyCommunion;
     private String participationInCatechesis;
 
+    @ManyToOne
+    private Family family;
+
     public Child() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -78,5 +94,13 @@ public class Child {
 
     public void setParticipationInCatechesis(String participationInCatechesis) {
         this.participationInCatechesis = participationInCatechesis;
+    }
+
+    public Family getFamily() {
+        return family;
+    }
+
+    public void setFamily(Family family) {
+        this.family = family;
     }
 }

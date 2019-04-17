@@ -1,12 +1,17 @@
 package pl.golabm.model;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
 public class FamilyMember {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private FamilyMemberType familyMemberType;
     private String firstName;
-    private Date dateOfBirth;
+    private Date birthDate;
     private String occupation;
     private String work;
     private Date yearOfMarriage;
@@ -14,7 +19,18 @@ public class FamilyMember {
     private ConfessionAndHolyCommunion confessionAndHolyCommunion;
     private String comments;
 
+    @ManyToOne
+    private Family family;
+
     public FamilyMember() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public FamilyMemberType getFamilyMemberType() {
@@ -33,12 +49,12 @@ public class FamilyMember {
         this.firstName = firstName;
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
+    public Date getBirthDate() {
+        return birthDate;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
     public String getOccupation() {
@@ -87,5 +103,13 @@ public class FamilyMember {
 
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    public Family getFamily() {
+        return family;
+    }
+
+    public void setFamily(Family family) {
+        this.family = family;
     }
 }
