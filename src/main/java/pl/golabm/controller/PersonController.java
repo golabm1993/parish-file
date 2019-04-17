@@ -43,6 +43,6 @@ public class PersonController {
     @PutMapping("/{id}")
     public Person update(@PathVariable Long id, @RequestBody PersonDTO personDTO) {
         Person person = personDTO.toEntity();
-        return personService.update(id, person);
+        return personService.mapOldToNewPerson(id, person);
     }
 }
