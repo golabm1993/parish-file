@@ -20,13 +20,8 @@ public class Family {
 
     @OneToMany(mappedBy = "family", cascade = CascadeType.MERGE)
     private List<Child> childList = new ArrayList<>();
+
     private Date lastPastoralVisit;
-
-    @ManyToOne
-    private FamilyMember familyMember;
-
-    @ManyToOne
-    private Child child;
 
     public Family() {
     }
@@ -85,21 +80,5 @@ public class Family {
 
     public void setLastPastoralVisit(Date lastPastoralVisit) {
         this.lastPastoralVisit = lastPastoralVisit;
-    }
-
-    public FamilyMember getFamilyMember() {
-        return familyMember;
-    }
-
-    public void setFamilyMember(FamilyMember familyMember) {
-        this.familyMember = familyMember;
-    }
-
-    public Child getChild() {
-        return child;
-    }
-
-    public void setChild(Child child) {
-        this.child = child;
     }
 }
