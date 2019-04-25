@@ -101,7 +101,7 @@ public class ChildDTO {
     }
 
     public Child toEntity() {
-        Child child = new Child();
+        final Child child = new Child();
         child.setId(id);
         child.setFirstName(firstName);
         child.setBirthDate(birthDate);
@@ -114,8 +114,8 @@ public class ChildDTO {
         return child;
     }
 
-    public static ChildDTO fromEntity(Child child) {
-        ChildDTO childDTO = new ChildDTO();
+    public static ChildDTO fromEntity(final Child child) {
+        final ChildDTO childDTO = new ChildDTO();
         childDTO.setId(child.getId());
         childDTO.setFirstName(child.getFirstName());
         childDTO.setBirthDate(child.getBirthDate());

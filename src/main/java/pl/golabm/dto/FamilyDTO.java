@@ -82,7 +82,7 @@ public class FamilyDTO {
     }
 
     public Family toEntity() {
-        Family family = new Family();
+        final Family family = new Family();
         List<FamilyMember> familyMember = familyMembers.stream().map(FamilyMemberDTO::toEntity).collect(Collectors.toList());
         List<Child> children = childList.stream().map(ChildDTO::toEntity).collect(Collectors.toList());
         family.setId(id);
@@ -95,8 +95,8 @@ public class FamilyDTO {
         return family;
     }
 
-    public FamilyDTO fromEntity(Family family) {
-        FamilyDTO familyDTO = new FamilyDTO();
+    public FamilyDTO fromEntity(final Family family) {
+        final FamilyDTO familyDTO = new FamilyDTO();
         List<FamilyMemberDTO> familyMemberDTOS = family.getFamilyMembers().stream().map(FamilyMemberDTO::fromEntity).collect(Collectors.toList());
         List<ChildDTO> childDTOS = family.getChildList().stream().map(ChildDTO::fromEntity).collect(Collectors.toList());
         familyDTO.setId(family.getId());

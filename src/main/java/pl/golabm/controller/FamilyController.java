@@ -19,7 +19,7 @@ public class FamilyController {
 
     @PostMapping
     public Family save(@RequestBody FamilyDTO familyDTO) {
-        Family family = familyDTO.toEntity();
+        final Family family = familyDTO.toEntity();
         return familyService.save(family);
     }
 
@@ -35,7 +35,7 @@ public class FamilyController {
 
     @PutMapping(value = "/{id}")
     public Family update(@PathVariable Long id, @RequestBody FamilyDTO familyDTO) {
-        Family family = familyDTO.toEntity();
+        final Family family = familyDTO.toEntity();
         return familyService.update(id, family);
     }
 }

@@ -30,14 +30,7 @@ public class FamilyService {
     }
 
     public Family update(Long id, Family family) {
-        Optional<Family> oldFammily = familyRepository.findById(id);
-        Family familyToUpdate = oldFammily.get();
-        familyToUpdate.setSurname(family.getSurname());
-        familyToUpdate.setAddress(family.getAddress());
-        familyToUpdate.setPhoneNumber(family.getPhoneNumber());
-        familyToUpdate.setFamilyMembers(family.getFamilyMembers());
-        familyToUpdate.setChildList(family.getChildList());
-        familyToUpdate.setLastPastoralVisit(family.getLastPastoralVisit());
-        return familyRepository.save(familyToUpdate);
+        family.setId(id);
+        return familyRepository.save(family);
     }
 }

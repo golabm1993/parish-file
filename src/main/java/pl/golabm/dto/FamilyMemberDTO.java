@@ -109,7 +109,7 @@ public class FamilyMemberDTO {
     }
 
     public FamilyMember toEntity() {
-        FamilyMember familyMember = new FamilyMember();
+        final FamilyMember familyMember = new FamilyMember();
         familyMember.setId(id);
         familyMember.setFirstName(firstName);
         familyMember.setBirthDate(birthDate);
@@ -122,8 +122,8 @@ public class FamilyMemberDTO {
         return familyMember;
     }
 
-    public static FamilyMemberDTO fromEntity(FamilyMember familyMember) {
-        FamilyMemberDTO familyMemberDTO = new FamilyMemberDTO();
+    public static FamilyMemberDTO fromEntity(final FamilyMember familyMember) {
+        final FamilyMemberDTO familyMemberDTO = new FamilyMemberDTO();
         familyMemberDTO.setId(familyMember.getId());
         familyMemberDTO.setFirstName(familyMember.getFirstName());
         familyMemberDTO.setBirthDate(familyMember.getBirthDate());
