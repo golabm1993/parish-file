@@ -1,33 +1,32 @@
-package pl.golabm.model;
+package pl.golabm.dto;
 
-import com.fasterxml.jackson.annotation.*;
+import org.springframework.lang.NonNull;
+import pl.golabm.model.Child;
+import pl.golabm.model.ConfessionAndHolyCommunion;
+import pl.golabm.model.SundayHolyMass;
 
-import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-//@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
-public class Child {
+public class ChildDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @NonNull
     private String firstName;
+
+    @NonNull
     private Date birthDate;
+
+    @NonNull
     private Date baptismDate;
+
+    @NonNull
     private Date firstCommunionDate;
+
     private Date confirmationDate;
     private SundayHolyMass sundayHolyMass;
     private ConfessionAndHolyCommunion confessionAndHolyCommunion;
     private String participationInCatechesis;
-
-    @ManyToOne
-    @JoinColumn(name = "family_id")
-//    @JsonManagedReference
-    private Family family;
-
-    public Child() {
-    }
 
     public Long getId() {
         return id;
@@ -101,12 +100,31 @@ public class Child {
         this.participationInCatechesis = participationInCatechesis;
     }
 
-//    @JoinColumn(name = "family_id")
-    public Family getFamily() {
-        return family;
+    public Child toEntity() {
+        Child child = new Child();
+        child.setId(id);
+        child.setFirstName(firstName);
+        child.setBirthDate(birthDate);
+        child.setBaptismDate(baptismDate);
+        child.setFirstCommunionDate(firstCommunionDate);
+        child.setConfirmationDate(confirmationDate);
+        child.setSundayHolyMass(sundayHolyMass);
+        child.setConfessionAndHolyCommunion(confessionAndHolyCommunion);
+        child.setParticipationInCatechesis(participationInCatechesis);
+        return child;
     }
 
-    public void setFamily(Family family) {
-        this.family = family;
+    public ChildDTO fromEntity(Child child) {
+        ChildDTO childDTO = new ChildDTO();
+        childDTO.setId(child.getId());
+        childDTO.setFirstName(child.getFirstName());
+        childDTO.setBirthDate(child.getBirthDate());
+        childDTO.setBaptismDate(child.getBaptismDate());
+        childDTO.setFirstCommunionDate(child.getFirstCommunionDate());
+        childDTO.setConfirmationDate(child.getConfirmationDate());
+        childDTO.setSundayHolyMass(child.getSundayHolyMass());
+        childDTO.setConfessionAndHolyCommunion(child.getConfessionAndHolyCommunion());
+        childDTO.setParticipationInCatechesis(child.getParticipationInCatechesis());
+        return childDTO;
     }
 }

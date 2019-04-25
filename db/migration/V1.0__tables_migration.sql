@@ -12,7 +12,7 @@ create table if not exists `family` (
 `surname` varchar(10),
 `address` varchar(20),
 `phone_number` varchar(10),
-`last_pastoral_visit` varchar(10)
+`last_pastoral_visit` date
 )ENGINE=InnoDB default charset=utf8;
 
 create table if not exists `family_member` (
