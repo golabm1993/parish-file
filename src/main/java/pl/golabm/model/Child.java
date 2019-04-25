@@ -1,12 +1,9 @@
 package pl.golabm.model;
 
-import com.fasterxml.jackson.annotation.*;
-
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-//@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Child {
 
     @Id
@@ -23,7 +20,6 @@ public class Child {
 
     @ManyToOne
     @JoinColumn(name = "family_id")
-//    @JsonManagedReference
     private Family family;
 
     public Child() {
@@ -101,7 +97,6 @@ public class Child {
         this.participationInCatechesis = participationInCatechesis;
     }
 
-//    @JoinColumn(name = "family_id")
     public Family getFamily() {
         return family;
     }

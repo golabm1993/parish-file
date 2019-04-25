@@ -95,14 +95,16 @@ public class FamilyDTO {
         return family;
     }
 
-//    public FamilyDTO fromEntity(Family family) {
-//        FamilyDTO familyDTO = new FamilyDTO();
-//        familyDTO.setId(family.getId());
-//        familyDTO.setAddress(family.getAddress());
-//        familyDTO.setPhoneNumber(family.getPhoneNumber());
-//        familyDTO.setFamilyMembers(family.getFamilyMembers());
-//        familyDTO.setChildList(family.getChildList());
-//        familyDTO.setLastPastoralVisit(family.getLastPastoralVisit());
-//        return familyDTO;
-//    }
+    public FamilyDTO fromEntity(Family family) {
+        FamilyDTO familyDTO = new FamilyDTO();
+        List<FamilyMemberDTO> familyMemberDTOS = family.getFamilyMembers().stream().map(FamilyMemberDTO::fromEntity).collect(Collectors.toList());
+        List<ChildDTO> childDTOS = family.getChildList().stream().map(ChildDTO::fromEntity).collect(Collectors.toList());
+        familyDTO.setId(family.getId());
+        familyDTO.setAddress(family.getAddress());
+        familyDTO.setPhoneNumber(family.getPhoneNumber());
+        familyDTO.setFamilyMembers(familyMemberDTOS);
+        familyDTO.setChildList(childDTOS);
+        familyDTO.setLastPastoralVisit(family.getLastPastoralVisit());
+        return familyDTO;
+    }
 }

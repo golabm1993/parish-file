@@ -122,7 +122,7 @@ public class FamilyMemberDTO {
         return familyMember;
     }
 
-    public FamilyMemberDTO fromEntity(FamilyMember familyMember) {
+    public static FamilyMemberDTO fromEntity(FamilyMember familyMember) {
         FamilyMemberDTO familyMemberDTO = new FamilyMemberDTO();
         familyMemberDTO.setId(familyMember.getId());
         familyMemberDTO.setFirstName(familyMember.getFirstName());

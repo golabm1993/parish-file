@@ -114,7 +114,7 @@ public class ChildDTO {
         return child;
     }
 
-    public ChildDTO fromEntity(Child child) {
+    public static ChildDTO fromEntity(Child child) {
         ChildDTO childDTO = new ChildDTO();
         childDTO.setId(child.getId());
         childDTO.setFirstName(child.getFirstName());
