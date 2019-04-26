@@ -1,5 +1,7 @@
 package pl.golabm.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,16 +11,17 @@ import java.util.List;
 public class Family {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String surname;
     private String address;
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "family", cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "family")
     private List<FamilyMember> familyMembers = new ArrayList<>();
 
-    @OneToMany(mappedBy = "family", cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "family")
+    @JsonIgnore
     private List<Child> childList = new ArrayList<>();
 
     private Date lastPastoralVisit;
