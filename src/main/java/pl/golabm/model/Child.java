@@ -1,5 +1,7 @@
 package pl.golabm.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -19,7 +21,7 @@ public class Child {
     private String participationInCatechesis;
 
     @ManyToOne
-    @JoinColumn(name = "family_id")
+    @JsonManagedReference
     private Family family;
 
     public Child() {

@@ -1,5 +1,7 @@
 package pl.golabm.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -7,7 +9,7 @@ import java.util.Date;
 public class FamilyMember {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private FamilyMemberType familyMemberType;
     private String firstName;
@@ -20,6 +22,7 @@ public class FamilyMember {
     private String comments;
 
     @ManyToOne
+    @JsonBackReference
     private Family family;
 
     public FamilyMember() {

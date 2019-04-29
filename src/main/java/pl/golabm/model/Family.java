@@ -1,6 +1,7 @@
 package pl.golabm.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,10 +19,11 @@ public class Family {
     private String phoneNumber;
 
     @OneToMany(mappedBy = "family")
+    @JsonManagedReference
     private List<FamilyMember> familyMembers = new ArrayList<>();
 
     @OneToMany(mappedBy = "family")
-    @JsonIgnore
+    @JsonBackReference
     private List<Child> childList = new ArrayList<>();
 
     private Date lastPastoralVisit;

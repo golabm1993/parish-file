@@ -111,6 +111,7 @@ public class FamilyMemberDTO {
     public FamilyMember toEntity() {
         final FamilyMember familyMember = new FamilyMember();
         familyMember.setId(id);
+        familyMember.setFamilyMemberType(familyMemberType);
         familyMember.setFirstName(firstName);
         familyMember.setBirthDate(birthDate);
         familyMember.setOccupation(occupation);
@@ -125,6 +126,7 @@ public class FamilyMemberDTO {
     public static FamilyMemberDTO fromEntity(final FamilyMember familyMember) {
         final FamilyMemberDTO familyMemberDTO = new FamilyMemberDTO();
         familyMemberDTO.setId(familyMember.getId());
+        familyMemberDTO.setFamilyMemberType(familyMember.getFamilyMemberType());
         familyMemberDTO.setFirstName(familyMember.getFirstName());
         familyMemberDTO.setBirthDate(familyMember.getBirthDate());
         familyMemberDTO.setOccupation(familyMember.getOccupation());
