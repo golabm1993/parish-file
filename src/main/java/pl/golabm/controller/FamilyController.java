@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.golabm.dto.FamilyDTO;
 import pl.golabm.model.Family;
+import pl.golabm.model.FamilyMember;
+import pl.golabm.service.FamilyMemberService;
 import pl.golabm.service.FamilyService;
 
 @RestController
@@ -11,20 +13,30 @@ import pl.golabm.service.FamilyService;
 public class FamilyController {
 
     private final FamilyService familyService;
+    private final FamilyMemberService familyMemberService;
 
     @Autowired
-    FamilyController(final FamilyService familyService) {
+    FamilyController(final FamilyService familyService, final FamilyMemberService familyMemberService) {
         this.familyService = familyService;
+        this.familyMemberService = familyMemberService;
     }
 
     @PostMapping
     public Family save(@RequestBody FamilyDTO familyDTO) {
         final Family family = familyDTO.toEntity();
-        return familyService.save(family);
+        familyService.save(family);
+        for (FamilyMember familyMember : family.getFamilyMembers()) {
+            familyMember.setFamily(family);
+            familyMemberService.save(familyMember);
+        }
+        return null;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable Long id) {
+        for (FamilyMember familyMember : familyService.getById(id).getFamilyMembers()) {
+            familyMemberService.delete(familyMember.getId());
+        }
         familyService.delete(id);
     }
 

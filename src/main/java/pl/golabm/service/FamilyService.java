@@ -5,8 +5,6 @@ import org.springframework.stereotype.Service;
 import pl.golabm.model.Family;
 import pl.golabm.repository.FamilyRepository;
 
-import java.util.Optional;
-
 @Service
 public class FamilyService {
 
@@ -27,6 +25,10 @@ public class FamilyService {
 
     public Iterable<Family> getAll() {
         return familyRepository.findAll();
+    }
+
+    public Family getById(Long id) {
+        return familyRepository.findById(id).get();
     }
 
     public Family update(Long id, Family family) {
