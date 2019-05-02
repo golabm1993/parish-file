@@ -1,6 +1,6 @@
 package pl.golabm.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -9,7 +9,7 @@ import java.util.Date;
 public class Child {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String firstName;
     private Date birthDate;
@@ -21,7 +21,7 @@ public class Child {
     private String participationInCatechesis;
 
     @ManyToOne
-    @JsonManagedReference
+    @JsonBackReference
     private Family family;
 
     public Child() {
