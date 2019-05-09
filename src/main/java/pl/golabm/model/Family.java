@@ -23,7 +23,7 @@ public class Family {
     private List<FamilyMember> familyMembers = new ArrayList<>();
 
     @OneToMany(mappedBy = "family")
-    @JsonBackReference
+    @JsonManagedReference
     private List<Child> childList = new ArrayList<>();
 
     private Date lastPastoralVisit;
