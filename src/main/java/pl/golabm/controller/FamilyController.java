@@ -51,6 +51,7 @@ public class FamilyController {
         familyService.delete(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping
     public Iterable<Family> getAll() {
         return familyService.getAll();
