@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './AllFamiliesDisplay.css';
+import DeleteFamilyButton from "./DeleteFamilyButton";
 
 class AllFamiliesDisplay extends Component {
     constructor(props) {
@@ -8,6 +9,8 @@ class AllFamiliesDisplay extends Component {
         this.state = {
             items: [],
         };
+
+        this.remove = this.remove.bind(this);
     }
 
     componentDidMount() {
@@ -17,6 +20,20 @@ class AllFamiliesDisplay extends Component {
                     this.setState({items: response});
                 }
             );
+    }
+
+    remove(id) {
+        fetch(`http://localhost:8080/family/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then(() => {
+            const {items} = this.state;
+            let updateGroups = items.filter(i => i.id !== id);
+            this.setState({items: updateGroups});
+        });
     }
 
     render() {
@@ -31,6 +48,7 @@ class AllFamiliesDisplay extends Component {
                                 Address: {hit.address}<br/>
                                 Phone number: {hit.phoneNumber}<br/>
                                 Last pastoral visit: {hit.lastPastoralVisit}
+                                <DeleteFamilyButton id={hit.id} remove={this.remove}/>
                             </li>
                         )}
                     </ul>
