@@ -35,4 +35,8 @@ public class FamilyService {
         family.setId(id);
         return familyRepository.save(family);
     }
+
+    public Family findBySurname(String surname) {
+        return familyRepository.findBySurname(surname);
+    }
 }

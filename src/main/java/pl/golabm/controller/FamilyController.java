@@ -37,7 +37,7 @@ public class FamilyController {
             child.setFamily(family);
             childService.save(child);
         }
-        return null;
+        return familyService.findBySurname(family.getSurname());
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
