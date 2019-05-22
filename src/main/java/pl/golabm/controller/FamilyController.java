@@ -3,10 +3,8 @@ package pl.golabm.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.golabm.dto.FamilyDTO;
-import pl.golabm.model.Child;
 import pl.golabm.model.Family;
 import pl.golabm.model.FamilyMember;
-import pl.golabm.service.ChildService;
 import pl.golabm.service.FamilyMemberService;
 import pl.golabm.service.FamilyService;
 
@@ -16,13 +14,11 @@ public class FamilyController {
 
     private final FamilyService familyService;
     private final FamilyMemberService familyMemberService;
-    private final ChildService childService;
 
     @Autowired
-    FamilyController(final FamilyService familyService, final FamilyMemberService familyMemberService, final ChildService childService) {
+    FamilyController(final FamilyService familyService, final FamilyMemberService familyMemberService) {
         this.familyService = familyService;
         this.familyMemberService = familyMemberService;
-        this.childService = childService;
     }
 
     @PostMapping
@@ -33,10 +29,6 @@ public class FamilyController {
             familyMember.setFamily(family);
             familyMemberService.save(familyMember);
         }
-        for (Child child: family.getChildList()) {
-            child.setFamily(family);
-            childService.save(child);
-        }
         return familyService.findBySurname(family.getSurname());
     }
 
@@ -44,9 +36,6 @@ public class FamilyController {
     public void delete(@PathVariable Long id) {
         for (FamilyMember familyMember : familyService.getById(id).getFamilyMembers()) {
             familyMemberService.delete(familyMember.getId());
-        }
-        for (Child child: familyService.getById(id).getChildList()) {
-            childService.delete(child.getId());
         }
         familyService.delete(id);
     }

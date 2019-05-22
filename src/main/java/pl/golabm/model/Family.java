@@ -1,6 +1,5 @@
 package pl.golabm.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -21,10 +20,6 @@ public class Family {
     @OneToMany(mappedBy = "family")
     @JsonManagedReference
     private List<FamilyMember> familyMembers = new ArrayList<>();
-
-    @OneToMany(mappedBy = "family")
-    @JsonManagedReference
-    private List<Child> childList = new ArrayList<>();
 
     private Date lastPastoralVisit;
 
@@ -69,14 +64,6 @@ public class Family {
 
     public void setFamilyMembers(List<FamilyMember> familyMembers) {
         this.familyMembers = familyMembers;
-    }
-
-    public List<Child> getChildList() {
-        return childList;
-    }
-
-    public void setChildList(List<Child> childList) {
-        this.childList = childList;
     }
 
     public Date getLastPastoralVisit() {

@@ -8,31 +8,21 @@ create table if not exists `family` (
 
 create table if not exists `family_member` (
 `id` bigint not null auto_increment,
-`first_name` varchar (10),
+`first_name` varchar (15),
 `birth_date` date,
 `occupation` varchar (20),
 `work` varchar (20),
-`family_member_type` varchar (10),
+`family_member_type` varchar (15),
 `year_of_marriage` date,
-`sunday_holy_mass` varchar (10),
-`confession_and_holy_communion` varchar (10),
+`sunday_holy_mass` varchar (15),
+`confession_and_holy_communion` varchar (15),
 `comments` varchar (30),
-`family_id` bigint,
-primary key (id),
-foreign key (family_id) references family(id)
-)ENGINE=InnoDB default charset=utf8;
-
-create table if not exists `child` (
-`id` bigint not null auto_increment,
-`first_name` varchar (10),
-`birth_date` date,
 `baptism_date` date,
 `first_communion_date` date,
 `confirmation_date` date,
-`sunday_holy_mass` varchar (10),
-`confession_and_holy_communion` varchar (10),
-`participation_in_catechesis` varchar (10),
+`participation_in_catechesis` varchar (15),
+`general_religious_evaluation` varchar (15),
 `family_id` bigint,
-primary key(id),
-foreign key(family_id) references family(id)
+primary key (id),
+foreign key (family_id) references family(id)
 )ENGINE=InnoDB default charset=utf8;
