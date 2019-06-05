@@ -1,7 +1,6 @@
 package pl.golabm.dto;
 
 import org.springframework.lang.NonNull;
-import pl.golabm.model.Child;
 import pl.golabm.model.Family;
 import pl.golabm.model.FamilyMember;
 
@@ -22,7 +21,6 @@ public class FamilyDTO {
 
     private String phoneNumber;
     private List<FamilyMemberDTO> familyMembers = new ArrayList<>();
-    private List<ChildDTO> childList = new ArrayList<>();
     private Date lastPastoralVisit;
 
     public Long getId() {
@@ -65,14 +63,6 @@ public class FamilyDTO {
         this.familyMembers = familyMembers;
     }
 
-    public List<ChildDTO> getChildList() {
-        return childList;
-    }
-
-    public void setChildList(List<ChildDTO> childList) {
-        this.childList = childList;
-    }
-
     public Date getLastPastoralVisit() {
         return lastPastoralVisit;
     }
@@ -84,13 +74,11 @@ public class FamilyDTO {
     public Family toEntity() {
         final Family family = new Family();
         List<FamilyMember> familyMember = familyMembers.stream().map(FamilyMemberDTO::toEntity).collect(Collectors.toList());
-        List<Child> children = childList.stream().map(ChildDTO::toEntity).collect(Collectors.toList());
         family.setId(id);
         family.setSurname(surname);
         family.setAddress(address);
         family.setPhoneNumber(phoneNumber);
         family.setFamilyMembers(familyMember);
-        family.setChildList(children);
         family.setLastPastoralVisit(lastPastoralVisit);
         return family;
     }
@@ -98,12 +86,10 @@ public class FamilyDTO {
     public FamilyDTO fromEntity(final Family family) {
         final FamilyDTO familyDTO = new FamilyDTO();
         List<FamilyMemberDTO> familyMemberDTOS = family.getFamilyMembers().stream().map(FamilyMemberDTO::fromEntity).collect(Collectors.toList());
-        List<ChildDTO> childDTOS = family.getChildList().stream().map(ChildDTO::fromEntity).collect(Collectors.toList());
         familyDTO.setId(family.getId());
         familyDTO.setAddress(family.getAddress());
         familyDTO.setPhoneNumber(family.getPhoneNumber());
         familyDTO.setFamilyMembers(familyMemberDTOS);
-        familyDTO.setChildList(childDTOS);
         familyDTO.setLastPastoralVisit(family.getLastPastoralVisit());
         return familyDTO;
     }

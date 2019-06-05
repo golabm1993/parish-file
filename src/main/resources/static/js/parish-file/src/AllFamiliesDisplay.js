@@ -1,23 +1,25 @@
 import React, {Component} from 'react';
 import './AllFamiliesDisplay.css';
 import DeleteFamilyButton from "./DeleteFamilyButton";
+import NewFamilyForm from "./NewFamilyForm";
 
 class AllFamiliesDisplay extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            items: [],
+            familyList: [],
         };
 
         this.remove = this.remove.bind(this);
+        this.addFamily = this.addFamily.bind(this);
     }
 
     componentDidMount() {
         fetch('http://localhost:8080/family')
             .then(response => response.json())
             .then((response) => {
-                    this.setState({items: response});
+                    this.setState({familyList: response});
                 }
             );
     }
@@ -30,19 +32,24 @@ class AllFamiliesDisplay extends Component {
                 'Content-Type': 'application/json'
             }
         }).then(() => {
-            const {items} = this.state;
-            let updateGroups = items.filter(i => i.id !== id);
-            this.setState({items: updateGroups});
+            const {familyList} = this.state;
+            let updateGroups = familyList.filter(i => i.id !== id);
+            this.setState({familyList: updateGroups});
         });
     }
 
+    addFamily(family) {
+        this.setState({familyList:this.state.familyList.concat([family])});
+    }
+
     render() {
-        const {items} = this.state;
+        const {familyList} = this.state;
         return (
             <div className="AllFamiliesDisplay">
                 <header className="AllFamiliesDisplay-header">
+                    <NewFamilyForm addFamily={this.addFamily}/>
                     <ul>
-                        {items.map(hit =>
+                        {familyList.map(hit =>
                             <li key={hit.id}>
                                 Surname: {hit.surname}<br/>
                                 Address: {hit.address}<br/>

@@ -19,6 +19,11 @@ public class FamilyMember {
     private Date yearOfMarriage;
     private SundayHolyMass sundayHolyMass;
     private ConfessionAndHolyCommunion confessionAndHolyCommunion;
+    private Date baptismDate;
+    private Date firstCommunionDate;
+    private Date confirmationDate;
+    private String participationInCatechesis;
+    private GeneralReligiousEvaluation generalReligiousEvaluation;
     private String comments;
 
     @ManyToOne
@@ -98,6 +103,46 @@ public class FamilyMember {
 
     public void setConfessionAndHolyCommunion(ConfessionAndHolyCommunion confessionAndHolyCommunion) {
         this.confessionAndHolyCommunion = confessionAndHolyCommunion;
+    }
+
+    public Date getBaptismDate() {
+        return baptismDate;
+    }
+
+    public void setBaptismDate(Date baptismDate) {
+        this.baptismDate = baptismDate;
+    }
+
+    public Date getFirstCommunionDate() {
+        return firstCommunionDate;
+    }
+
+    public void setFirstCommunionDate(Date firstCommunionDate) {
+        this.firstCommunionDate = firstCommunionDate;
+    }
+
+    public Date getConfirmationDate() {
+        return confirmationDate;
+    }
+
+    public void setConfirmationDate(Date confirmationDate) {
+        this.confirmationDate = confirmationDate;
+    }
+
+    public String getParticipationInCatechesis() {
+        return participationInCatechesis;
+    }
+
+    public void setParticipationInCatechesis(String participationInCatechesis) {
+        this.participationInCatechesis = participationInCatechesis;
+    }
+
+    public GeneralReligiousEvaluation getGeneralReligiousEvaluation() {
+        return generalReligiousEvaluation;
+    }
+
+    public void setGeneralReligiousEvaluation(GeneralReligiousEvaluation generalReligiousEvaluation) {
+        this.generalReligiousEvaluation = generalReligiousEvaluation;
     }
 
     public String getComments() {
