@@ -1,0 +1,60 @@
+<div>
+  <label>Surname:
+    <input #surname/>
+  </label>
+  <label>Address:
+    <input #address/>
+  </label>
+  <label>Phone number:
+    <input #phoneNumber/>
+  </label>
+  <label>Last pastoral visit:
+    <input type="date" #lastPastoralVisit/>
+  </label>
+  <button (click)="save(surname.value, address.value, phoneNumber.value, lastPastoralVisit.value);
+ surname.value=''; address.value=''; phoneNumber.value=''; lastPastoralVisit.value=''">
+    Save
+  </button>
+</div>
+<table>
+  <tr>
+    <th>Surname</th>
+    <th>Address</th>
+    <th>Phone number</th>
+    <th>Last pastoral visit</th>
+  </tr>
+  <tr *ngFor="let family of families">
+    <th>{{family.surname}}</th>
+    <th>{{family.address}}</th>
+    <th>{{family.phoneNumber}}</th>
+    <th>{{family.lastPastoralVisit}}</th>
+    <th>
+      <button (click)="id.value=family.id.toString(); surname2.value=family.surname; address2.value=family.address;
+      phoneNumber2.value=family.phoneNumber; lastPastoralVisit2.value=family.lastPastoralVisit;">
+        Update
+      </button>
+    </th>
+    <th>
+      <button (click)="delete(family)">Delete</button>
+    </th>
+  </tr>
+</table>
+<div>
+  <input #id style="display: none"/>
+  <label>Surname:
+    <input #surname2/>
+  </label>
+  <label>Address:
+    <input #address2/>
+  </label>
+  <label>Phone number:
+    <input #phoneNumber2/>
+  </label>
+  <label>Last pastoral visit:
+    <input type="date" #lastPastoralVisit2/>
+  </label>
+  <button (click)="update(id.value, surname2.value, address2.value, phoneNumber2.value, lastPastoralVisit2.value);
+   surname2.value=''; address2.value=''; phoneNumber2.value=''; lastPastoralVisit2.value=''">
+    Update
+  </button>
+</div>
