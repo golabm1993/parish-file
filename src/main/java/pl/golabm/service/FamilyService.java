@@ -31,12 +31,7 @@ public class FamilyService {
         return familyRepository.findById(id).get();
     }
 
-    public Family update(Long id, Family family) {
-        family.setId(id);
+    public Family update(Family family) {
         return familyRepository.save(family);
-    }
-
-    public Family findBySurname(String surname) {
-        return familyRepository.findBySurname(surname);
     }
 }

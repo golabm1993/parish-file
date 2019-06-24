@@ -13,14 +13,22 @@ export class FamilyComponent implements OnInit {
 
   families: Family[];
 
+  familyToUpdate = {} as Family;
+
+  newFamily = {} as Family;
+
+  p: Number = 1;
+
+  count: Number = 5;
+
   constructor(private familyService: FamilyService) { }
 
   getFamilies(): void {
     this.familyService.get().subscribe(families => this.families = families);
   }
 
-  save(surname: string, address: string, phoneNumber: string, lastPastoralVisit: string) {
-    this.familyService.save({surname, address, phoneNumber, lastPastoralVisit} as Family)
+  save() {
+    this.familyService.save(this.newFamily)
       .subscribe(family => {
         this.families.push(family);
       });
@@ -31,15 +39,25 @@ export class FamilyComponent implements OnInit {
     this.familyService.delete(family).subscribe();
   }
 
-  update(id: string, surname: string, address: string, phoneNumber: string, lastPastoralVisit: string): void {
-    let updateItem = this.families.find(this.findIndexToUpdate, +id);
+  update(): void {
+    let updateItem = this.families.find(this.findIndexToUpdate, this.familyToUpdate.id);
     let index = this.families.indexOf(updateItem);
-    this.familyService.update(+id, {surname, address, phoneNumber, lastPastoralVisit} as Family)
+    this.familyService.update(this.familyToUpdate)
       .subscribe(family => this.families[index] = family);
   }
 
   findIndexToUpdate(newItem) {
     return newItem.id === this;
+  }
+
+  passData(family: Family): void {
+    // Object.keys(family).forEach((prop)=> console.log(typeof family[prop]));
+
+    this.familyToUpdate.id = family.id;
+    this.familyToUpdate.surname = family.surname;
+    this.familyToUpdate.address = family.address;
+    this.familyToUpdate.phoneNumber = family.phoneNumber;
+    this.familyToUpdate.lastPastoralVisit = family.lastPastoralVisit;
   }
 
   ngOnInit() {

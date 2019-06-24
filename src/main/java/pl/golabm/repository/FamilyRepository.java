@@ -1,8 +1,7 @@
 package pl.golabm.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import pl.golabm.model.Family;
 
-public interface FamilyRepository extends CrudRepository<Family, Long> {
-    Family findBySurname(String surname);
+public interface FamilyRepository extends PagingAndSortingRepository<Family, Long> {
 }

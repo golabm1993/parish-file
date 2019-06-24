@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+ font-family: adventpro-thin;
+  src: url("adventpro-thin.ttf");
+}
+
+@font-face {
+  font-family: extralight;
+  src: url("adventpro-extralight.ttf");
+}
+
+@font-face {
+  font-family: regular;
+  src: url("adventpro-regular.ttf");
+}
+
+@font-face {
+  font-family: CaviarDreams;
+  src: url("CaviarDreams.ttf");
+}
+
+@font-face {
+  font-family: imans;
+  src: url("lmsans10-regular.otf");
+}
+
+@font-face {
+  font-family: lekton;
+  src: url("Montserrat-Light.otf");
+}
+
+body {
+  background-color: white;
+  font-family: lekton, sans-serif;
+  font-size: 15px;
+}

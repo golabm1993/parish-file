@@ -31,9 +31,7 @@ export class FamilyService {
     return this.httpClient.delete<Family>(url, httpOptions);
   }
 
-  update(family: Family | number, family2: Family): Observable<any> {
-    const id = typeof family == 'number' ? family : family.id;
-    const url = `${this.url}/${id}`;
-    return this.httpClient.put(url, family2, httpOptions);
+  update(family: Family): Observable<any> {
+    return this.httpClient.put(this.url, family, httpOptions);
   }
 }

@@ -1,60 +1,92 @@
-<div>
-  <label>Surname:
-    <input #surname/>
-  </label>
-  <label>Address:
-    <input #address/>
-  </label>
-  <label>Phone number:
-    <input #phoneNumber/>
-  </label>
-  <label>Last pastoral visit:
-    <input type="date" #lastPastoralVisit/>
-  </label>
-  <button (click)="save(surname.value, address.value, phoneNumber.value, lastPastoralVisit.value);
- surname.value=''; address.value=''; phoneNumber.value=''; lastPastoralVisit.value=''">
-    Save
-  </button>
+<div id="test">
+  <a class="button"id="new-family-button" href="#popup1">New family</a>
+
+<div id="popup1" class="overlay">
+  <div class="popup">
+    <div id="new-family-form">
+      <label>Last name:
+        <input #surname [(ngModel)]="newFamily.surname"/>
+      </label>
+      <label>Address:
+        <input #address [(ngModel)]="newFamily.address"/>
+      </label>
+      <label>Phone number:
+        <input #phoneNumber [(ngModel)]="newFamily.phoneNumber"/>
+      </label>
+      <label>Last pastoral visit:
+        <input type="date" #lastPastoralVisit [(ngModel)]="newFamily.lastPastoralVisit"/>
+      </label>
+      <a class="button close window-close-button" href="#" (click)="save(); surname.value=''; address.value='';
+      phoneNumber.value=''; lastPastoralVisit.value=''">
+        Save
+      </a>
+    </div>
+    <a class="close" href="#">&times;</a>
+  </div>
 </div>
+
 <table>
+  <thead>
   <tr>
-    <th>Surname</th>
+    <th>Last name</th>
     <th>Address</th>
     <th>Phone number</th>
     <th>Last pastoral visit</th>
+    <th></th>
+    <th></th>
   </tr>
-  <tr *ngFor="let family of families">
+  </thead>
+  <tbody>
+  <tr *ngFor="let family of families | paginate: { itemsPerPage: count, currentPage: p }">
     <th>{{family.surname}}</th>
     <th>{{family.address}}</th>
     <th>{{family.phoneNumber}}</th>
-    <th>{{family.lastPastoralVisit}}</th>
+    <th>{{family.lastPastoralVisit | date: 'dd.MM.yyyy'}}</th>
     <th>
-      <button (click)="id.value=family.id.toString(); surname2.value=family.surname; address2.value=family.address;
-      phoneNumber2.value=family.phoneNumber; lastPastoralVisit2.value=family.lastPastoralVisit;">
-        Update
-      </button>
+      <div class="box">
+        <a class="button" href="#popup2" (click)="passData(family)">
+          Update
+        </a>
+      </div>
     </th>
     <th>
-      <button (click)="delete(family)">Delete</button>
+      <div class="box">
+        <a class="button" (click)="delete(family)">Delete</a>
+      </div>
     </th>
   </tr>
+  </tbody>
 </table>
+  <div class="paginate">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
+
 <div>
-  <input #id style="display: none"/>
-  <label>Surname:
-    <input #surname2/>
-  </label>
-  <label>Address:
-    <input #address2/>
-  </label>
-  <label>Phone number:
-    <input #phoneNumber2/>
-  </label>
-  <label>Last pastoral visit:
-    <input type="date" #lastPastoralVisit2/>
-  </label>
-  <button (click)="update(id.value, surname2.value, address2.value, phoneNumber2.value, lastPastoralVisit2.value);
-   surname2.value=''; address2.value=''; phoneNumber2.value=''; lastPastoralVisit2.value=''">
-    Update
-  </button>
+  <div id="popup2" class="overlay">
+    <div class="popup">
+      <div id="update-family-form">
+        <label>Last name:
+          <input #surnameToUpdate
+                 [(ngModel)]="familyToUpdate.surname"
+          [value]="familyToUpdate.surname"/>
+        </label>
+        <label>Address:
+          <input #addressToUpdate [(ngModel)]="familyToUpdate.address"/>
+        </label>
+        <label>Phone number:
+          <input #phoneNumberToUpdate [(ngModel)]="familyToUpdate.phoneNumber"/>
+        </label>
+        <label>Last pastoral visit:
+          <input type="date" #lastPastoralVisitToUpdate [ngModel]="familyToUpdate.lastPastoralVisit | date: 'yyyy-MM-dd'"
+                 (ngModelChange)="familyToUpdate.lastPastoralVisit = $event"/>
+        </label>
+        <a class="button close window-close-button" href="#" (click)="update(); surnameToUpdate.value=''; addressToUpdate.value='';
+        phoneNumberToUpdate.value=''; lastPastoralVisitToUpdate.value=''">
+          Update
+        </a>
+      </div>
+      <a class="close" href="#">&times;</a>
+    </div>
+  </div>
 </div>

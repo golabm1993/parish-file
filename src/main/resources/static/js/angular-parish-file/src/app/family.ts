@@ -3,5 +3,5 @@ export interface Family {
   surname: string;
   address: string;
   phoneNumber: string;
-  lastPastoralVisit: string;
+  lastPastoralVisit: Date;
 }

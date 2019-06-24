@@ -23,13 +23,13 @@ public class FamilyController {
 
     @PostMapping
     public Family save(@RequestBody FamilyDTO familyDTO) {
-        final Family family = familyDTO.toEntity();
-        familyService.save(family);
+        Family family = familyDTO.toEntity();
+        family = familyService.save(family);
         for (FamilyMember familyMember : family.getFamilyMembers()) {
             familyMember.setFamily(family);
             familyMemberService.save(familyMember);
         }
-        return familyService.findBySurname(family.getSurname());
+        return family;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
@@ -40,14 +40,14 @@ public class FamilyController {
         familyService.delete(id);
     }
 
-    @GetMapping
+    @GetMapping()
     public Iterable<Family> getAll() {
         return familyService.getAll();
     }
 
-    @PutMapping(value = "/{id}")
-    public Family update(@PathVariable Long id, @RequestBody FamilyDTO familyDTO) {
+    @PutMapping()
+    public Family update(@RequestBody FamilyDTO familyDTO) {
         final Family family = familyDTO.toEntity();
-        return familyService.update(id, family);
+        return familyService.update(family);
     }
 }
