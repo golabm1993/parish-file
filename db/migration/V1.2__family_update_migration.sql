@@ -1,0 +1,1 @@
+alter table family modify surname varchar(20);
