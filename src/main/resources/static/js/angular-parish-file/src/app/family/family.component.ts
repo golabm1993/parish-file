@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FamilyService} from "../family.service";
-import {Family} from "../family";
+import {FamilyService} from "./family.service";
+import {Family} from "./family";
 
 @Component({
   selector: 'app-family',
@@ -17,9 +17,9 @@ export class FamilyComponent implements OnInit {
 
   newFamily = {} as Family;
 
-  p: Number = 1;
+  activePage: Number = 1;
 
-  count: Number = 5;
+  rowsNumber: Number = 5;
 
   constructor(private familyService: FamilyService) { }
 
@@ -35,8 +35,7 @@ export class FamilyComponent implements OnInit {
   }
 
   delete(family: Family): void {
-    this.families = this.families.filter(f => f !== family);
-    this.familyService.delete(family).subscribe();
+    this.familyService.delete(family.id).subscribe(id => this.families = this.families.filter(family => family.id !== id));
   }
 
   update(): void {
@@ -46,13 +45,11 @@ export class FamilyComponent implements OnInit {
       .subscribe(family => this.families[index] = family);
   }
 
-  findIndexToUpdate(newItem) {
+  private findIndexToUpdate(newItem) {
     return newItem.id === this;
   }
 
-  passData(family: Family): void {
-    // Object.keys(family).forEach((prop)=> console.log(typeof family[prop]));
-
+  setupDataToModify(family: Family): void {
     this.familyToUpdate.id = family.id;
     this.familyToUpdate.surname = family.surname;
     this.familyToUpdate.address = family.address;

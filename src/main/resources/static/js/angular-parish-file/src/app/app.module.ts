@@ -7,11 +7,13 @@ import { AppComponent } from './app.component';
 import { FamilyComponent } from './family/family.component';
 import {FormsModule} from "@angular/forms";
 import {NgxPaginationModule} from "ngx-pagination";
+import { FamilyDetailsComponent } from './family-details/family-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FamilyComponent
+    FamilyComponent,
+    FamilyDetailsComponent
   ],
   imports: [
     BrowserModule,

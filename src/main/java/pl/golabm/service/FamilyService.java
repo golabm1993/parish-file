@@ -19,8 +19,9 @@ public class FamilyService {
         return familyRepository.save(family);
     }
 
-    public void delete(Long id) {
+    public Long delete(Long id) {
         familyRepository.deleteById(id);
+        return id;
     }
 
     public Iterable<Family> getAll() {

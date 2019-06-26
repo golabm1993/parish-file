@@ -33,11 +33,11 @@ public class FamilyController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable Long id) {
+    public Long delete(@PathVariable Long id) {
         for (FamilyMember familyMember : familyService.getById(id).getFamilyMembers()) {
             familyMemberService.delete(familyMember.getId());
         }
-        familyService.delete(id);
+        return familyService.delete(id);
     }
 
     @GetMapping()

@@ -1,4 +1,4 @@
-<div id="test">
+<div id="mainPage">
   <a class="button"id="new-family-button" href="#popup1">New family</a>
 
 <div id="popup1" class="overlay">
@@ -16,12 +16,12 @@
       <label>Last pastoral visit:
         <input type="date" #lastPastoralVisit [(ngModel)]="newFamily.lastPastoralVisit"/>
       </label>
-      <a class="button close window-close-button" href="#" (click)="save(); surname.value=''; address.value='';
+      <a class="button close_add_and_update_family_popup window-close-button" href="#" (click)="save(); surname.value=''; address.value='';
       phoneNumber.value=''; lastPastoralVisit.value=''">
         Save
       </a>
     </div>
-    <a class="close" href="#">&times;</a>
+    <a class="button close_add_and_update_family_popup" href="#">&times;</a>
   </div>
 </div>
 
@@ -37,14 +37,14 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let family of families | paginate: { itemsPerPage: count, currentPage: p }">
+  <tr *ngFor="let family of families | paginate: { itemsPerPage: rowsNumber, currentPage: activePage }">
     <th>{{family.surname}}</th>
     <th>{{family.address}}</th>
     <th>{{family.phoneNumber}}</th>
     <th>{{family.lastPastoralVisit | date: 'dd.MM.yyyy'}}</th>
     <th>
       <div class="box">
-        <a class="button" href="#popup2" (click)="passData(family)">
+        <a class="button" href="#popup2" (click)="setupDataToModify(family)">
           Update
         </a>
       </div>
@@ -58,7 +58,7 @@
   </tbody>
 </table>
   <div class="paginate">
-    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    <pagination-controls (pageChange)="activePage = $event"></pagination-controls>
   </div>
 </div>
 
@@ -81,12 +81,12 @@
           <input type="date" #lastPastoralVisitToUpdate [ngModel]="familyToUpdate.lastPastoralVisit | date: 'yyyy-MM-dd'"
                  (ngModelChange)="familyToUpdate.lastPastoralVisit = $event"/>
         </label>
-        <a class="button close window-close-button" href="#" (click)="update(); surnameToUpdate.value=''; addressToUpdate.value='';
+        <a class="button close_add_and_update_family_popup window-close-button" href="#" (click)="update(); surnameToUpdate.value=''; addressToUpdate.value='';
         phoneNumberToUpdate.value=''; lastPastoralVisitToUpdate.value=''">
           Update
         </a>
       </div>
-      <a class="close" href="#">&times;</a>
+      <a class="button close_add_and_update_family_popup" href="#">&times;</a>
     </div>
   </div>
 </div>

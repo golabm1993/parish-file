@@ -1,6 +1,6 @@
 create table if not exists `family` (
 `id` bigint not null auto_increment primary key,
-`surname` varchar(20),
+`surname` varchar(10),
 `address` varchar(20),
 `phone_number` varchar(10),
 `last_pastoral_visit` date
